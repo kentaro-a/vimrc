@@ -38,6 +38,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle "tyru/caw.vim.git"
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'thinca/vim-quickrun'	
+NeoBundle 'grep.vim'
 call neobundle#end()
 
 filetype plugin indent on
@@ -53,4 +57,3 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 colorscheme desert
 filetype plugin indent off
 filetype indent off
-
