@@ -54,6 +54,41 @@ nmap <C-K> <Plug>(caw:i:toggle)
 vmap <C-K> <Plug>(caw:i:toggle)
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-colorscheme desert
+"set background=dark
+"colorscheme deep-space
+"set background=dark
+"colorscheme paramount
+colorscheme blues
+"colorscheme welpe
+"colorscheme sky
+"colorscheme genericdc
+"colorscheme 256_noir
+
 filetype plugin indent off
 filetype indent off
+
+
+" 出力がないやエラーの場合はquickfixに出力。それ以外は普通にバッファへ。
+" vimprocの非同期設定。
+" ウィンドウのサイズなど
+let g:quickrun_config = {
+		\   "_" : {
+				\       "outputter/buffer/split" : ":botright 8sp",
+				\   },
+				\}
+
+				" quickrunを強制終了
+				nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+
+				" 簡単起動
+				cmap qr QuickRun
+				cmap QR QuickRun
+
+				" 簡単終了
+				command! -nargs=0 QC call CloseQuickRunWindow()
+				function! CloseQuickRunWindow()
+				    execute "normal \<c-c>\<c-w>jZZ"
+					endfunction
+					cmap qc QC
+
+set splitbelow
