@@ -6,6 +6,6 @@ if [ ! -e ~/.vim ]; then
 	mkdir ~/.vim
 fi
 
-cp -r ./.colors ~/.vim/
+cp -r ./colors ~/.vim/
 
 sh ./nb-install.sh
