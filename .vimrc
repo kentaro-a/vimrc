@@ -13,6 +13,11 @@ set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set encoding=utf-8
 set clipboard=unnamed,autoselect
+set hidden
+set shiftwidth=4
+set incsearch
+set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 vmap <C-c> :w !xsel -ib<CR><CR>
 
