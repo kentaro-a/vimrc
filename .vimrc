@@ -101,3 +101,5 @@ let g:quickrun_config = {
 					cmap qc QC
 
 set splitbelow
+
+set whichwrap=b,s,h,l,<,>,[,]
