@@ -15,6 +15,9 @@ set encoding=utf-8
 set clipboard=unnamed,autoselect
 set hidden
 set shiftwidth=4
+set ruler
+set paste
+set autoindent
 set incsearch
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
