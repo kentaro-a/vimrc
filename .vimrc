@@ -52,6 +52,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'thinca/vim-quickrun'	
 NeoBundle 'grep.vim'
+NeoBundle 'tyru/caw.vim.git'
 call neobundle#end()
 
 filetype plugin indent on
@@ -102,5 +103,7 @@ let g:quickrun_config = {
 					cmap qc QC
 
 set splitbelow
-
 set whichwrap=b,s,h,l,<,>,[,]
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
