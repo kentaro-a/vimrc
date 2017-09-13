@@ -17,6 +17,7 @@ set hidden
 set shiftwidth=4
 set ruler
 set paste
+set cursorline
 set autoindent
 set incsearch
 set hlsearch
