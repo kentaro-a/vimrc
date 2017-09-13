@@ -8,13 +8,14 @@ set smartindent
 set ignorecase
 set smartcase
 set wrapscan
-set virtualedit=block
 set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set encoding=utf-8
 set clipboard=unnamed,autoselect
 set hidden
 set shiftwidth=4
+let &t_ti.="\e[5 q"
+set virtualedit=onemore
 set ruler
 set paste
 set cursorline
