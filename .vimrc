@@ -26,6 +26,8 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 vmap <C-c> :w !xsel -ib<CR><CR>
 
+autocmd BufWritePre * :%s/    /\t/ge
+
 if has('mouse')
 	set mouse=a
 	if has('mouse_sgr')
