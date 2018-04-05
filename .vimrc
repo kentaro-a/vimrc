@@ -53,7 +53,7 @@ set noshowmode
 hi Comment ctermfg=242
 highlight LineNr ctermfg=darkyellow
 autocmd BufWritePre * :%s/\s\+$//ge
-autocmd BufWritePre * :%s/    /\t/ge
+autocmd BufWritePre * :%s/	/\t/ge
 
 
 
@@ -61,9 +61,9 @@ autocmd BufWritePre * :%s/    /\t/ge
 " set number
 "function Setnumber()
 "  if &number
-"    setlocal nonumber
+"	setlocal nonumber
 "  else
-"    setlocal number
+"	setlocal number
 "  endif
 "endfunction
 "nnoremap <silent> <C-m> :call Setnumber()<CR>
@@ -82,9 +82,8 @@ endif
 
 
 if has('vim_starting')
-    set nocompatible
-
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+	set nocompatible
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -96,6 +95,12 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'grep.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'surround.vim'
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -104,7 +109,12 @@ NeoBundleCheck
 filetype plugin indent off
 filetype indent off
 
-
+noremap <S-h>   ^
+noremap <S-j>   }
+noremap <S-k>   {
+noremap <S-l>   $
+nnoremap <CR> A<CR><ESC>
+map :q :q!
 map <C-e> :NERDTreeToggle<CR>
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
@@ -118,9 +128,15 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-n> gt
 nnoremap <C-p> gT
 
-autocmd vimenter * NERDTree
 let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+function s:MoveToFileAtStart()
+  call feedkeys("\<C-w>")
+  call feedkeys("\w")
+endfunction
+
+autocmd VimEnter *  NERDTree | call s:MoveToFileAtStart()
 
 
 
@@ -141,4 +157,26 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+
+
+
+
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
+
+" neosnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
 
