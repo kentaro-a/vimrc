@@ -17,7 +17,7 @@ set smartindent
 set showmatch
 set laststatus=2
 set wildmode=list:longest
-set expandtab
+"set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -53,6 +53,8 @@ set noshowmode
 hi Comment ctermfg=242
 highlight LineNr ctermfg=darkyellow
 autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/    /\t/ge
+
 
 
 
@@ -80,7 +82,7 @@ endif
 
 
 if has('vim_starting')
-	set nocompatible
+    set nocompatible
 
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -91,6 +93,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle "tyru/caw.vim.git"
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'grep.vim'
 call neobundle#end()
@@ -118,7 +121,6 @@ nnoremap <C-p> gT
 autocmd vimenter * NERDTree
 let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 
 
 
