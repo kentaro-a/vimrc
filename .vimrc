@@ -19,7 +19,6 @@ set smartindent
 set showmatch
 set laststatus=2
 set wildmode=list:longest
-"set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -54,25 +53,44 @@ set statusline=%F%m%r%h%w\%=[FILETYPE=%Y][ENC=%{&fenc}][%{&ff}]%=%c,\%l/%L
 set pastetoggle=<F2>
 
 hi Comment ctermfg=242
-highlight LineNr ctermfg=darkyellow
+highlight LineNr ctermfg=67
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/	/\t/ge
 
 
 
+" Cursor Mode
+function! HardMode ()
+  noremap <Up> <Nop>
+  noremap <Down> <Nop>
+  noremap <Left> <Nop>
+  noremap <Right> <Nop>
+endfunction
+function! EasyMode ()
+  noremap <Up> <Up>
+  noremap <Down> <Down>
+  noremap <Left> <Left>
+  noremap <Right> <Right>
+endfunction
+command! HardMode call HardMode()
+command! EasyMode call EasyMode()
+" Default
+call HardMode()
 
-" set number
-"function Setnumber()
-"  if &number
-"	setlocal nonumber
-"  else
-"	setlocal number
-
-"  endif
-"endfunction
-"nnoremap <silent> <C-m> :call Setnumber()<CR>
 
 
+" Restore the offset of cursor
+function! s:RestoreCursorPostion()
+  if line("'\"") <= line("$")
+	normal! g`"
+	return 1
+  endif
+endfunction
+" ファイルを開いた時に、以前のカーソル位置を復元する
+augroup vimrc_restore_cursor_position
+  autocmd!
+  autocmd BufWinEnter * call s:RestoreCursorPostion()
+augroup END
 
 
 " Highlight Space
@@ -81,29 +99,24 @@ function! ZenkakuSpace()
 endfunction
 
 if has('syntax')
-augroup ZenkakuSpace
- autocmd!
- autocmd ColorScheme       * call ZenkakuSpace()
- autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-augroup END
-call ZenkakuSpace()
+	augroup ZenkakuSpace
+		autocmd!
+		autocmd ColorScheme		  * call ZenkakuSpace()
+		autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+	augroup END
+	call ZenkakuSpace()
 endif
 
 
 if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
 
-
-augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-  \ exe "normal g`\"" | endif
-augroup END
 
 
 
@@ -113,23 +126,23 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle "tyru/caw.vim.git"
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'grep.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'surround.vim'
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'rhysd/accelerated-jk'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'ctrlpvim/ctrlp.vim'
+	NeoBundleFetch 'Shougo/neobundle.vim'
+	NeoBundle 'Shougo/unite.vim'
+	NeoBundle 'Shougo/neomru.vim'
+	NeoBundle "tyru/caw.vim.git"
+	NeoBundle 'scrooloose/nerdtree'
+	NeoBundle 'jistr/vim-nerdtree-tabs'
+	NeoBundle 'mattn/emmet-vim'
+	NeoBundle 'grep.vim'
+	NeoBundle 'Shougo/neocomplcache'
+	NeoBundle 'Shougo/neosnippet'
+	NeoBundle 'Shougo/neosnippet-snippets'
+	NeoBundle 'tomtom/tcomment_vim'
+	NeoBundle 'surround.vim'
+	NeoBundle 'Townk/vim-autoclose'
+	NeoBundle 'rhysd/accelerated-jk'
+	NeoBundle 'thinca/vim-quickrun'
+	NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
 
@@ -139,13 +152,13 @@ NeoBundleCheck
 filetype plugin indent off
 filetype indent off
 
-noremap <S-h>   ^
-noremap <S-j>   }
-noremap <S-k>   {
-noremap <S-l>   $
+noremap <S-h>	^
+noremap <S-j>	}
+noremap <S-k>	{
+noremap <S-l>	$
 nnoremap <CR> A<CR><ESC>
 map :q :q!
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nmap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -156,6 +169,13 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-n> gt
 nnoremap <C-p> gT
+nnoremap + <C-a>
+nnoremap - <C-x>
+nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
+
+
+
 
 " Nerdtree
 map <C-e> :NERDTreeToggle<CR>
@@ -163,13 +183,13 @@ let NERDTreeShowHidden = 1
 let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 function s:MoveToFileAtStart()
-  call feedkeys("\<C-w>")
-  call feedkeys("\w")
+	call feedkeys("\<C-w>")
+	call feedkeys("\w")
 endfunction
-autocmd VimEnter *  NERDTree | call s:MoveToFileAtStart()
+autocmd VimEnter *	NERDTree | call s:MoveToFileAtStart()
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+	exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+	exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
@@ -198,12 +218,12 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 
 " neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <C-k>	   <Plug>(neosnippet_expand_or_jump)
+smap <C-k>	   <Plug>(neosnippet_expand_or_jump)
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+	set conceallevel=2 concealcursor=i
 endif
 
 
@@ -215,19 +235,21 @@ nmap k <Plug>(accelerated_jk_gk)
 
 " quick run
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
-au FileType qf nnoremap <silent><buffer>q :quit<CR>
 set laststatus=2
 set t_Co=256
 nmap <Space>r <Plug>(quickrun)
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config = {
 	\'_' : {
-		\   'outputter/buffer/split' : ':botright 8sp',
-		\   'outputter/error/success' : 'buffer',
-		\   'outputter/error/error'   : 'quickfix',
-		\   "outputter/buffer/into" : '1',
-		\   'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
-		\   'outputter/buffer/close_on_empty' : 1,
-		\   'outputter' : 'error',
+		\	"runner" : "vimproc",
+		\	"runner/vimproc/updatetime" : 40,
+		\	'outputter/buffer/split' : ':botright 20sp',
+		\	'outputter/error/success' : 'buffer',
+		\	'outputter/error/error'   : 'buffer',
+		\	"outputter/buffer/into" : '1',
+		\	'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
+		\	'outputter/buffer/close_on_empty' : 1,
+		\	'outputter' : 'error',
 		\},
 \}
 
