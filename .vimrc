@@ -127,6 +127,7 @@ NeoBundle 'surround.vim'
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'rhysd/accelerated-jk'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
 
