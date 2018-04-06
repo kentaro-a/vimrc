@@ -59,38 +59,6 @@ autocmd BufWritePre * :%s/	/\t/ge
 
 
 
-" Cursor Mode
-function! HardMode ()
-  noremap <Up> <Nop>
-  noremap <Down> <Nop>
-  noremap <Left> <Nop>
-  noremap <Right> <Nop>
-endfunction
-function! EasyMode ()
-  noremap <Up> <Up>
-  noremap <Down> <Down>
-  noremap <Left> <Left>
-  noremap <Right> <Right>
-endfunction
-command! HardMode call HardMode()
-command! EasyMode call EasyMode()
-" Default
-call HardMode()
-
-
-
-" Restore the offset of cursor
-function! s:RestoreCursorPostion()
-  if line("'\"") <= line("$")
-	normal! g`"
-	return 1
-  endif
-endfunction
-" ファイルを開いた時に、以前のカーソル位置を復元する
-augroup vimrc_restore_cursor_position
-  autocmd!
-  autocmd BufWinEnter * call s:RestoreCursorPostion()
-augroup END
 
 
 " Highlight Space
@@ -158,7 +126,7 @@ noremap <S-k>	{
 noremap <S-l>	$
 nnoremap <CR> A<CR><ESC>
 map :q :q!
-nmap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -241,8 +209,6 @@ nmap <Space>r <Plug>(quickrun)
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config = {
 	\'_' : {
-		\	"runner" : "vimproc",
-		\	"runner/vimproc/updatetime" : 40,
 		\	'outputter/buffer/split' : ':botright 20sp',
 		\	'outputter/error/success' : 'buffer',
 		\	'outputter/error/error'   : 'buffer',
