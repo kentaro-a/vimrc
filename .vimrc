@@ -48,7 +48,8 @@ set splitright
 set scrolloff=3
 set gdefault
 set noshowmode
-
+set statusline=%F%m%r%h%w\%=[FILETYPE=%Y][ENC=%{&fenc}][%{&ff}]%=%c,\%l/%L
+set pastetoggle=<F2>
 
 hi Comment ctermfg=242
 highlight LineNr ctermfg=darkyellow
@@ -64,9 +65,27 @@ autocmd BufWritePre * :%s/	/\t/ge
 "	setlocal nonumber
 "  else
 "	setlocal number
+
 "  endif
 "endfunction
 "nnoremap <silent> <C-m> :call Setnumber()<CR>
+
+
+
+
+" Highlight Space
+function! ZenkakuSpace()
+	highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+
+if has('syntax')
+augroup ZenkakuSpace
+ autocmd!
+ autocmd ColorScheme       * call ZenkakuSpace()
+ autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+augroup END
+call ZenkakuSpace()
+endif
 
 
 if exists('$TMUX')
@@ -78,6 +97,11 @@ else
 endif
 
 
+
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 
 
 
@@ -100,6 +124,9 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'surround.vim'
+NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'rhysd/accelerated-jk'
+NeoBundle 'thinca/vim-quickrun'
 
 call neobundle#end()
 
@@ -115,7 +142,6 @@ noremap <S-k>   {
 noremap <S-l>   $
 nnoremap <CR> A<CR><ESC>
 map :q :q!
-map <C-e> :NERDTreeToggle<CR>
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
 nnoremap k gk
@@ -128,18 +154,16 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-n> gt
 nnoremap <C-p> gT
 
+" Nerdtree
+map <C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
 let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 function s:MoveToFileAtStart()
   call feedkeys("\<C-w>")
   call feedkeys("\w")
 endfunction
-
 autocmd VimEnter *  NERDTree | call s:MoveToFileAtStart()
-
-
-
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -179,4 +203,28 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+
+
+" accelerated-jk
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
+
+" quick run
+let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+set laststatus=2
+set t_Co=256
+nmap <Space>r <Plug>(quickrun)
+let g:quickrun_config = {
+	\'_' : {
+		\   'outputter/buffer/split' : ':botright 8sp',
+		\   'outputter/error/success' : 'buffer',
+		\   'outputter/error/error'   : 'quickfix',
+		\   "outputter/buffer/into" : '1',
+		\   'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
+		\   'outputter/buffer/close_on_empty' : 1,
+		\   'outputter' : 'error',
+		\},
+\}
 
