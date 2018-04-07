@@ -135,8 +135,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
-nnoremap <C-n> gt
-nnoremap <C-p> gT
+nnoremap <S-Left> gT
+nnoremap <S-Right> gt
 nnoremap + <C-a>
 nnoremap - <C-x>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
