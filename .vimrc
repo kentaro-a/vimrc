@@ -54,6 +54,7 @@ set gdefault
 set noshowmode
 set statusline=%F%m%r%h%w\%=[FILETYPE=%Y][ENC=%{&fenc}][%{&ff}]%=%c,\%l/%L
 set pastetoggle=<F2>
+set noexpandtab
 
 hi Comment ctermfg=242
 highlight LineNr ctermfg=67
@@ -62,11 +63,11 @@ highlight LineNr ctermfg=67
 function! s:remove_dust()
 	let cursor = getpos(".")
 	%s/\s\+$//ge
-	%s/	/\t/ge
 	call setpos(".", cursor)
 	unlet cursor
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
+
 
 
 " Highlight Space
@@ -84,6 +85,9 @@ if has('syntax')
 endif
 
 
+
+
+
 if exists('$TMUX')
 	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -91,8 +95,6 @@ else
 	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-
 
 
 
