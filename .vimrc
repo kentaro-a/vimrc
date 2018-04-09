@@ -57,11 +57,16 @@ set pastetoggle=<F2>
 
 hi Comment ctermfg=242
 highlight LineNr ctermfg=67
-autocmd BufWritePre * :%s/\s\+$//ge
-autocmd BufWritePre * :%s/	/\t/ge
 
 
-
+function! s:remove_dust()
+	let cursor = getpos(".")
+	%s/\s\+$//ge
+	%s/	/\t/ge
+	call setpos(".", cursor)
+	unlet cursor
+endfunction
+autocmd BufWritePre * call <SID>remove_dust()
 
 
 " Highlight Space
