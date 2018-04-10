@@ -50,7 +50,7 @@ set wildmenu
 set splitbelow
 set splitright
 set scrolloff=3
-set gdefault
+" set gdefault
 set noshowmode
 set statusline=%F%m%r%h%w\%=[FILETYPE=%Y][ENC=%{&fenc}][%{&ff}]%=%c,\%l/%L
 set pastetoggle=<F2>
