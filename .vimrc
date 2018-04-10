@@ -229,3 +229,8 @@ let g:quickrun_config = {
 		\},
 \}
 
+
+" Do not yank by x,s
+nnoremap x "_x
+nnoremap s "_s
+
