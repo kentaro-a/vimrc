@@ -245,3 +245,13 @@ autocmd QuickFixCmdPost *grep* cwindow
 " Treat - as a keyword.(Not border char)
 set iskeyword+=-
 
+
+" Jump to specific source when pressing enter-key in QuickFix.
+" function! OpenModifiableQF()
+" 		cw
+" 		set modifiable
+" 		set nowrap
+" endfunction
+" autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
+autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
+
