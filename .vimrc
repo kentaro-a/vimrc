@@ -135,7 +135,6 @@ noremap <S-j>	}
 noremap <S-k>	{
 noremap <S-l>	$
 nnoremap <CR> A<CR><ESC>
-map :q :q!
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
 nnoremap k gk
