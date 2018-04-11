@@ -11,6 +11,8 @@ set list
 set listchars=tab:»-
 hi SpecialKey ctermfg=237 guifg=#3a3a3a
 hi NonText ctermfg=66 guifg=#5f8787
+hi TabLineFill term=bold cterm=bold ctermbg=0
+hi TabLineSel term=bold cterm=bold ctermbg=74
 set number
 set fenc=utf-8
 set encoding=utf-8
