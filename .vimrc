@@ -234,3 +234,14 @@ let g:quickrun_config = {
 nnoremap x "_x
 nnoremap s "_s
 
+
+
+" vimgrep highlighted word
+nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
+nmap <F3> <Space><Space>:vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
+autocmd QuickFixCmdPost *grep* cwindow
+
+
+" Treat - as a keyword.(Not border char)
+set iskeyword+=-
+
