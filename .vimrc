@@ -245,12 +245,15 @@ autocmd QuickFixCmdPost *grep* cwindow
 set iskeyword+=-
 
 
-" Jump to specific source when pressing enter-key in QuickFix.
-" function! OpenModifiableQF()
-" 		cw
-" 		set modifiable
-" 		set nowrap
-" endfunction
-" autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
+" Open file as new tab when clicking quickfix list item.
 autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
 
+
+" unite
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
