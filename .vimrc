@@ -124,6 +124,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 	NeoBundle 'rhysd/accelerated-jk'
 	NeoBundle 'thinca/vim-quickrun'
 	NeoBundle 'ctrlpvim/ctrlp.vim'
+	NeoBundle 'thinca/vim-qfreplace'
 
 call neobundle#end()
 
