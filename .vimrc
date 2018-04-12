@@ -273,4 +273,13 @@ set showtabline=2
 nmap <silent> <C-/><C-/> yy:<C-u>TComment<CR>p
 
 
+" Toggle row number format.
+function! ToggleNuMode()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <silent>;h :call g:ToggleNuMode()<cr>
 
