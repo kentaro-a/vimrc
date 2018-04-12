@@ -12,7 +12,8 @@ set listchars=tab:»-
 hi SpecialKey ctermfg=237 guifg=#3a3a3a
 hi NonText ctermfg=66 guifg=#5f8787
 hi TabLineFill term=bold cterm=bold ctermbg=0
-hi TabLineSel term=bold cterm=bold ctermbg=74
+hi TabLineSel term=bold cterm=bold ctermbg=75 ctermfg=15
+
 set number
 set fenc=utf-8
 set encoding=utf-8
@@ -259,3 +260,10 @@ nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
+
+
+
+" Tab settings
+set showtabline=2
+
