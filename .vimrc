@@ -115,9 +115,9 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 	NeoBundle 'jistr/vim-nerdtree-tabs'
 	NeoBundle 'mattn/emmet-vim'
 	NeoBundle 'grep.vim'
-	NeoBundle 'Shougo/neocomplcache'
-	NeoBundle 'Shougo/neosnippet'
-	NeoBundle 'Shougo/neosnippet-snippets'
+	" NeoBundle 'Shougo/neocomplcache'
+	" NeoBundle 'Shougo/neosnippet'
+	" NeoBundle 'Shougo/neosnippet-snippets'
 	NeoBundle 'tomtom/tcomment_vim'
 	NeoBundle 'surround.vim'
 	NeoBundle 'Townk/vim-autoclose'
@@ -192,22 +192,21 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
+" let g:neocomplcache_enable_at_startup = 1
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neosnippet
-imap <C-k>	   <Plug>(neosnippet_expand_or_jump)
-smap <C-k>	   <Plug>(neosnippet_expand_or_jump)
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal')
-	set conceallevel=2 concealcursor=i
-endif
-
-
+" imap <C-k>	   <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>	   <Plug>(neosnippet_expand_or_jump)
+" imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" if has('conceal')
+" 	set conceallevel=2 concealcursor=i
+" endif
+"
+"
 
 " accelerated-jk
 nmap j <Plug>(accelerated_jk_gj)
@@ -251,20 +250,27 @@ set iskeyword+=-
 
 " Open file as new tab when clicking quickfix list item.
 autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
+nnoremap <silent> @rr :Qfreplace<Enter>
+
 
 
 " unite
 let g:unite_source_history_yank_enable =1
-let g:unite_source_file_mru_limit = 200
+let g:unite_source_file_mru_limit = 50
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-
+nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
 
 
 
 " Tab settings
 set showtabline=2
+
+
+" tcomment keymap
+nmap <silent> <C-/><C-/> yy:<C-u>TComment<CR>p
+
+
 
