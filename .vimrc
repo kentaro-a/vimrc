@@ -115,7 +115,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 	NeoBundle 'jistr/vim-nerdtree-tabs'
 	NeoBundle 'mattn/emmet-vim'
 	NeoBundle 'grep.vim'
-	" NeoBundle 'Shougo/neocomplcache'
+	NeoBundle 'Shougo/neocomplcache'
+	NeoBundle 'Shougo/neoyank.vim'
 	" NeoBundle 'Shougo/neosnippet'
 	" NeoBundle 'Shougo/neosnippet-snippets'
 	NeoBundle 'tomtom/tcomment_vim'
@@ -192,10 +193,10 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 
 " neocomplcache
-" let g:neocomplcache_enable_at_startup = 1
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+let g:neocomplcache_enable_at_startup = 1
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neosnippet
 " imap <C-k>	   <Plug>(neosnippet_expand_or_jump)
@@ -255,9 +256,8 @@ nnoremap <silent> @rr :Qfreplace<Enter>
 
 
 " unite
-let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 50
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,,; :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
@@ -283,3 +283,12 @@ function! ToggleNuMode()
 endfunc
 nnoremap <silent>;h :call g:ToggleNuMode()<cr>
 
+" Modify register when you pasted.
+xnoremap p "_dP
+
+
+
+
+
+" memo
+" vat -> select whole tag.
