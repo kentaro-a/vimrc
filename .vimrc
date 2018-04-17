@@ -287,7 +287,8 @@ nnoremap <silent>;h :call g:ToggleNuMode()<cr>
 xnoremap p "_dP
 
 
-
+" share the os clipboard.
+set clipboard+=unnamed
 
 
 " memo
