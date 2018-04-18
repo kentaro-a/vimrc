@@ -291,5 +291,9 @@ xnoremap p "_dP
 set clipboard+=unnamed
 
 
+" Replace highlighted text in current file.
+nmap rr <Space><Space>:%s///g<Left><Left>
+
+
 " memo
 " vat -> select whole tag.
