@@ -270,7 +270,7 @@ set showtabline=2
 
 
 " tcomment keymap
-nmap <silent> <C-/><C-/> yy:<C-u>TComment<CR>p
+nmap <silent> <C-/><C-/> <C-_>p
 
 
 " Toggle row number format.
@@ -293,6 +293,16 @@ set clipboard+=unnamed
 
 " Replace highlighted text in current file.
 nmap rr <Space><Space>:%s///g<Left><Left>
+
+
+".vimrcを開く: <Space>e.
+nnoremap <Space>e. :<C-u>edit $MYVIMRC<Enter>
+ ".vimrcを反映: <Space>s.
+nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
+
+" Back to the normal mode.
+inoremap jjj <ESC>
+
 
 
 " memo
