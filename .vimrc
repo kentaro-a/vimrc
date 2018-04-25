@@ -55,7 +55,7 @@ set splitright
 set scrolloff=3
 " set gdefault
 set noshowmode
-set statusline=%F%m%r%h%w\%=[FILETYPE=%Y][ENC=%{&fenc}][%{&ff}]%=%c,\%l/%L
+" set statusline=%F%m%r%h%w\%=[FILETYPE=%Y][ENC=%{&fenc}][%{&ff}]%=%c,\%l/%L
 set pastetoggle=<F2>
 set noexpandtab
 
@@ -126,6 +126,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 	NeoBundle 'thinca/vim-quickrun'
 	NeoBundle 'ctrlpvim/ctrlp.vim'
 	NeoBundle 'thinca/vim-qfreplace'
+	NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 
@@ -216,7 +217,6 @@ nmap k <Plug>(accelerated_jk_gk)
 
 " quick run
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
-set laststatus=2
 set t_Co=256
 nmap <Space>r <Plug>(quickrun)
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
@@ -301,8 +301,12 @@ nnoremap <Space>e. :<C-u>edit $MYVIMRC<Enter>
 nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
 
 " Back to the normal mode.
-inoremap jjj <ESC>
+inoremap jj <ESC>
 
+
+if isdirectory(expand('~/.vim/bundle/vim-fugitive'))
+	set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
+endif
 
 
 " memo
