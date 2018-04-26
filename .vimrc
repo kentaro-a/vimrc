@@ -127,6 +127,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 	NeoBundle 'ctrlpvim/ctrlp.vim'
 	NeoBundle 'thinca/vim-qfreplace'
 	NeoBundle 'tpope/vim-fugitive'
+	NeoBundle 'scrooloose/syntastic'
 
 call neobundle#end()
 
@@ -307,6 +308,16 @@ inoremap jj <ESC>
 if isdirectory(expand('~/.vim/bundle/vim-fugitive'))
 	set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 endif
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
 " memo
