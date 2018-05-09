@@ -321,5 +321,9 @@ if isdirectory(expand('~/.vim/bundle/syntastic'))
 	let g:syntastic_check_on_wq = 0
 endif
 
+" Search selected character.
+vnoremap * "zy:let @/ = @z<CR>n
+
+
 " memo
 " vat -> select whole tag.
