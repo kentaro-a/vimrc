@@ -161,12 +161,14 @@ noremap ga ggVG
 
 
 
+
 " Nerdtree
 map <C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-function s:MoveToFileAtStart()
+function! s:MoveToFileAtStart()
+
 	call feedkeys("\<C-w>")
 	call feedkeys("\w")
 endfunction
@@ -244,7 +246,7 @@ nnoremap s "_s
 nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
 nmap <F3> <Space><Space>:vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
 autocmd QuickFixCmdPost *grep* cwindow
-
+vnoremap G* "zy :vimgrep /<C-R>z/j **/*
 
 " Treat - as a keyword.(Not border char)
 set iskeyword+=-
@@ -271,7 +273,8 @@ set showtabline=2
 
 
 " tcomment keymap
-nmap <silent> <C-/><C-/> <C-_>p
+nmap <silent> -- <C-_><C-_>
+vmap <silent> -- <C-_><C-_>
 
 
 " Toggle row number format.
