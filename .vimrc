@@ -297,6 +297,7 @@ set clipboard+=unnamed
 
 " Replace highlighted text in current file.
 nmap rr <Space><Space>:%s///g<Left><Left>
+vnoremap rr "zy :%s/<C-R>z//g<Left><Left>
 
 
 ".vimrcを開く: <Space>e.
