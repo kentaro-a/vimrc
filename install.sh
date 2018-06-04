@@ -8,4 +8,3 @@ fi
 
 cp -r ./colors ~/.vim/
 
-sh ./nb-install.sh
