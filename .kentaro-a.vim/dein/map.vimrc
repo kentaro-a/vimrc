@@ -2,7 +2,7 @@
 noremap <S-h>	^
 noremap <S-j>	}
 noremap <S-k>	{
-noremap <S-l>	$
+noremap <S-l>	$<Left>
 noremap <CR> A<CR><ESC>
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
