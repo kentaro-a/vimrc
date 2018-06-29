@@ -64,17 +64,17 @@ autocmd BufWritePre * call <SID>remove_dust()
 
 
 " Highlight Space
-function! ZenkakuSpace()
-	highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+function! markMbSpace()
+	highlight markMbSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
 
 if has('syntax')
-	augroup ZenkakuSpace
+	augroup markMbSpace
 		autocmd!
-		autocmd ColorScheme		  * call ZenkakuSpace()
-		autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+		autocmd ColorScheme		  * call markMbSpace()
+		autocmd VimEnter,WinEnter * match markMbSpace /　/
 	augroup END
-	call ZenkakuSpace()
+	call markMbSpace()
 endif
 
 
@@ -114,21 +114,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 
-" quick run
-let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
-let g:quickrun_config = {
-	\'_' : {
-		\	'outputter/buffer/split' : ':botright 20sp',
-		\	'outputter/error/success' : 'buffer',
-		\	'outputter/error/error'   : 'buffer',
-		\	"outputter/buffer/into" : '1',
-		\	'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
-		\	'outputter/buffer/close_on_empty' : 1,
-		\	'outputter' : 'error',
-		\},
-\}
-
-
 
 " vimgrep highlighted word
 autocmd QuickFixCmdPost *grep* cwindow
@@ -143,9 +128,9 @@ let g:unite_source_file_mru_limit = 50
 " Toggle row number format.
 function! ToggleNuMode()
   if(&relativenumber == 1)
-    set norelativenumber
+	set norelativenumber
   else
-    set relativenumber
+	set relativenumber
   endif
 endfunc
 
