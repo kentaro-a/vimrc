@@ -6,5 +6,4 @@ if [ ! -e ~/.vim ]; then
 	mkdir ~/.vim
 fi
 
-cp -r ./colors ~/.vim/
 
