@@ -1,8 +1,9 @@
+
 noremap <S-h>	^
 noremap <S-j>	}
 noremap <S-k>	{
 noremap <S-l>	$
-nnoremap <CR> A<CR><ESC>
+noremap <CR> A<CR><ESC>
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
 nnoremap k gk
@@ -21,17 +22,20 @@ nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 noremap ga ggVG
 
 
-
+" NERDTree
 map <C-e> :NERDTreeToggle<CR>
+
 
 " accelerated-jk
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
 
+" quickfix
 nmap <Space>r <Plug>(quickrun)
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
-
+autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
+nnoremap <silent> @rr :Qfreplace<Enter>
 
 
 " Do not yank by x,s
@@ -39,25 +43,19 @@ nnoremap x "_x
 nnoremap s "_s
 
 
+" vimgrep
 nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
 nmap <F3> <Space><Space>:vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
-
-
 vnoremap G* "zy :vimgrep /<C-R>z/j **/*
 
-" Open file as new tab when clicking quickfix list item.
-autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
-nnoremap <silent> @rr :Qfreplace<Enter>
 
-
-
-
-
+" Unite
 nnoremap <silent> ,,; :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
+
 
 " tcomment keymap
 nmap <silent> -- <C-_><C-_>
@@ -66,8 +64,8 @@ vmap <silent> -- <C-_><C-_>
 
 " Modify register when you pasted.
 xnoremap p "_dP
-
 nnoremap <silent>;h :call g:ToggleNuMode()<cr>
+
 
 " Replace highlighted text in current file.
 nmap rr <Space><Space>:%s///g<Left><Left>
@@ -79,10 +77,10 @@ nnoremap <Space>e. :<C-u>edit $MYVIMRC<Enter>
  ".vimrcを反映: <Space>s.
 nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
 
+
 " Back to the normal mode.
 inoremap jj <ESC>
 
 " Search selected character.
 vnoremap * "zy:let @/ = @z<CR>n
-
 
