@@ -53,28 +53,28 @@ set showtabline=2
 set clipboard+=unnamed
 
 
-function! s:remove_dust()
+function! s:RemoveDust()
 	let cursor = getpos(".")
 	%s/\s\+$//ge
 	call setpos(".", cursor)
 	unlet cursor
 endfunction
-autocmd BufWritePre * call <SID>remove_dust()
+autocmd BufWritePre * call <SID>RemoveDust()
 
 
 
 " Highlight Space
-function! markMbSpace()
-	highlight markMbSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+function! MarkMbSpace()
+	highlight MarkMbSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
 
 if has('syntax')
-	augroup markMbSpace
+	augroup MarkMbSpace
 		autocmd!
-		autocmd ColorScheme		  * call markMbSpace()
-		autocmd VimEnter,WinEnter * match markMbSpace /　/
+		autocmd ColorScheme		  * call MarkMbSpace()
+		autocmd VimEnter,WinEnter * match MarkMbSpace /　/
 	augroup END
-	call markMbSpace()
+	call MarkMbSpace()
 endif
 
 
