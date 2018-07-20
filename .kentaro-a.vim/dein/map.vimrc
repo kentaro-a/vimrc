@@ -21,7 +21,7 @@ nnoremap - <C-x>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 noremap ga ggVG
-
+nnoremap <C-k> za
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
