@@ -1,2 +1,15 @@
+[[plugins]]
+repo = "davidhalter/jedi-vim"
+on_ft = ['python']
 
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
 
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = 'go'

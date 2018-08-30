@@ -137,6 +137,9 @@ endfunc
 
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
+let g:go_bin_path = $GOPATH.'/bin'
+filetype plugin indent on
+
 " Key mapping
 source ~/.kentaro-a.vim/dein/map.vimrc
 
