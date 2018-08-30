@@ -2,8 +2,7 @@
 noremap <S-h>	^
 noremap <S-j>	}
 noremap <S-k>	{
-noremap <S-l>	$
-vnoremap <S-l>	$<Left>
+noremap <S-l>	$<Left>
 noremap <CR> A<CR><ESC>
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap j gj
@@ -21,7 +20,7 @@ nnoremap - <C-x>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 noremap ga ggVG
-nnoremap <C-k> za
+
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -84,4 +83,11 @@ inoremap jj <ESC>
 
 " Search selected character.
 vnoremap * "zy:let @/ = @z<CR>n
+
+
+
+" osyo-manga/vim-over, the easy grep
+nnoremap <silent> <Space>o :OverCommandLine<CR>%s///g<Left><Left><Left>
+vnoremap <silent> <Space>o :OverCommandLine<CR>s///g<Left><Left><Left>
+nnoremap rep :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 

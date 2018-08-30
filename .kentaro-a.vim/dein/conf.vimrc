@@ -51,9 +51,6 @@ set noexpandtab
 set iskeyword+=-
 set showtabline=2
 set clipboard+=unnamed
-set foldmethod=indent
-set foldlevel=1
-set foldnestmax=2
 
 
 function! s:RemoveDust()

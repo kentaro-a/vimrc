@@ -52,3 +52,5 @@ repo =  'tpope/vim-fugitive'
 [[plugins]]
 repo =  'scrooloose/syntastic'
 
+[[plugins]]
+repo = 'osyo-manga/vim-over'
