@@ -10,21 +10,13 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-f>
+nnoremap <C-k> <C-b>
 nnoremap <S-Left> gT
 nnoremap <S-Right> gt
-nnoremap + <C-a>
-nnoremap - <C-x>
-nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>"*yiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 noremap ga ggVG
-
-
-" NERDTree
-map <C-e> :NERDTreeToggle<CR>
 
 
 " accelerated-jk
@@ -44,10 +36,20 @@ nnoremap x "_x
 nnoremap s "_s
 
 
-" vimgrep
-nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
+" Search selected character.
+vnoremap * "zy:let @/ = @z<CR>n
+
+
+" grep
 nmap <F3> <Space><Space>:vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
+nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
 vnoremap G* "zy :vimgrep /<C-R>z/j **/*
+
+
+" replace
+nnoremap <silent> <Space>o :OverCommandLine<CR>%s///g<Left><Left><Left>
+vnoremap <silent> <Space>o :OverCommandLine<CR>s///g<Left><Left><Left>
+nnoremap rep :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 
 
 " Unite
@@ -65,31 +67,17 @@ vmap <silent> -- <C-_><C-_>
 
 " Modify register when you pasted.
 xnoremap p "_dP
+
+" toggle row number format
 nnoremap <silent>;h :call g:ToggleNuMode()<cr>
-
-
-" Replace highlighted text in current file.
-nmap rr <Space><Space>:%s///g<Left><Left>
-vnoremap rr "zy :%s/<C-R>z//g<Left><Left>
-
-
-".vimrcを開く: <Space>e.
-nnoremap <Space>e. :<C-u>edit $MYVIMRC<Enter>
- ".vimrcを反映: <Space>s.
-nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
 
 
 " Back to the normal mode.
 inoremap jj <ESC>
 
-" Search selected character.
-vnoremap * "zy:let @/ = @z<CR>n
 
 
 
-" osyo-manga/vim-over, the easy grep
-nnoremap <silent> <Space>o :OverCommandLine<CR>%s///g<Left><Left><Left>
-vnoremap <silent> <Space>o :OverCommandLine<CR>s///g<Left><Left><Left>
-nnoremap rep :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+
 
 
