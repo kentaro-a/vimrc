@@ -12,6 +12,8 @@ vnoremap j gj
 vnoremap k gk
 nnoremap <C-j> <C-f>
 nnoremap <C-k> <C-b>
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 nnoremap <S-Left> gT
 nnoremap <S-Right> gt
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>"*yiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
