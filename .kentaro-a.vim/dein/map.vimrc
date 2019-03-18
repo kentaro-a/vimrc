@@ -78,6 +78,9 @@ nnoremap <silent>;h :call g:ToggleNuMode()<cr>
 inoremap jj <ESC>
 
 
+vnoremap <Space><Space>y :<C-U>call g:DumpText('v')<CR>
+nnoremap <Space><Space>y :call g:DumpText('n')<CR>
+
 
 
 
