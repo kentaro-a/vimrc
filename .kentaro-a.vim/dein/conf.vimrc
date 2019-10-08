@@ -168,3 +168,7 @@ function! DumpText (mode)
 
 endfunction
 
+command! Kmap call ShowKeyMapping()
+function! ShowKeyMapping()
+	:tabe $HOME/.kentaro-a.vim/dein/map.vimrc
+endfunction
