@@ -10,8 +10,8 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-nnoremap <C-j> <C-f>
-nnoremap <C-k> <C-b>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <S-Left> gT
@@ -46,6 +46,7 @@ vnoremap * "zy:let @/ = @z<CR>n
 nmap <F3> <Space><Space>:vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
 nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
 vnoremap G* "zy :vimgrep /<C-R>z/j **/*
+nmap G* :vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
 
 
 " replace
