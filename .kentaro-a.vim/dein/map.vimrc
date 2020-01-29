@@ -37,6 +37,12 @@ nnoremap <silent> @rr :Qfreplace<Enter>
 nnoremap x "_x
 nnoremap s "_s
 
+nnoremap cmd :belowright :terminal<CR>
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-h> <C-w>h
+tnoremap <C-l> <C-w>l
+
 
 " Search selected character.
 vnoremap * "zy:let @/ = @z<CR>n
