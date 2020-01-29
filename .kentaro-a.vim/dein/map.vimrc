@@ -88,8 +88,12 @@ inoremap jj <ESC>
 vnoremap <Space><Space>y :<C-U>call g:DumpText('v')<CR>
 nnoremap <Space><Space>y :call g:DumpText('n')<CR>
 
-
-
+" Terminal window
+nnoremap cmd :belowright :terminal<CR>
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-h> <C-w>h
+tnoremap <C-l> <C-w>l
 
 
 
