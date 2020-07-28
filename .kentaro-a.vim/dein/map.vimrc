@@ -19,6 +19,10 @@ nnoremap <S-Right> gt
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>"*yiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 noremap ga ggVG
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-h> <C-w>h
+tnoremap <C-l> <C-w>l
 
 
 " accelerated-jk
@@ -37,22 +41,15 @@ nnoremap <silent> @rr :Qfreplace<Enter>
 nnoremap x "_x
 nnoremap s "_s
 
+" Terminal window
 nnoremap cmd :belowright :terminal<CR>
-tnoremap <C-j> <C-w>j
-tnoremap <C-k> <C-w>k
-tnoremap <C-h> <C-w>h
-tnoremap <C-l> <C-w>l
-
 
 " Search selected character.
 vnoremap * "zy:let @/ = @z<CR>n
 
-
 " grep
-nmap <F3> <Space><Space>:vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
-nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j **/*
-vnoremap G* "zy :vimgrep /<C-R>z/j **/*
-nmap G* :vimgrep //j **/*<Left><Left><Left><Left><Left><Left><Left>
+nmap <C-G> <Space><Space>:vimgrep /<C-R><C-W>/j ./*
+vnoremap G* "zy :vimgrep /<C-R>z/j ./*
 
 
 " replace
@@ -63,9 +60,6 @@ nnoremap rep :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 
 " Unite
 nnoremap <silent> ,,; :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
 
 
@@ -87,13 +81,6 @@ inoremap jj <ESC>
 
 vnoremap <Space><Space>y :<C-U>call g:DumpText('v')<CR>
 nnoremap <Space><Space>y :call g:DumpText('n')<CR>
-
-" Terminal window
-nnoremap cmd :belowright :terminal<CR>
-tnoremap <C-j> <C-w>j
-tnoremap <C-k> <C-w>k
-tnoremap <C-h> <C-w>h
-tnoremap <C-l> <C-w>l
 
 
 
