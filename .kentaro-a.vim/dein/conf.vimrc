@@ -208,7 +208,7 @@ autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
 " *********************************************************
 " *********************************************************
 " *********************************************************
-colorscheme blues
+colorscheme myblues
 set t_Co=256
 hi SpecialKey ctermfg=237 guifg=#3a3a3a
 hi NonText ctermfg=66 guifg=#5f8787

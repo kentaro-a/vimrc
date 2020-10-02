@@ -8,7 +8,7 @@ if $TERM != 'linux' || has('gui')
 
 set bg=dark
 set t_Co=256
-let g:colors_name="blues"
+let g:colors_name="myblues"
 
 hi Normal        ctermfg=251    ctermbg=None  cterm=None  guifg=#c6c6c6  guibg=#1c1c1c
 hi Cursor        ctermfg=Black  ctermbg=White cterm=None  guifg=Black    guibg=White
