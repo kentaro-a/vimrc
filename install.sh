@@ -1,5 +1,8 @@
 #!/bin/sh
 
+if [ -e ~/.vimrc ]; then
+	cp ~/.vimrc ~/.vimrc.backup.evil-vim
+fi
 cp ./.vimrc ~/.vimrc
 cp -r ./.kentaro-a.vim ~/
 
@@ -13,3 +16,4 @@ fi
 
 
 cp -r ./colors/myblues.vim ~/.vim/colors/myblues.vim
+
