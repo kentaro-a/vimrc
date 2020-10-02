@@ -2,31 +2,13 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo =  'Shougo/unite.vim'
-
-[[plugins]]
-repo =  'Shougo/neomru.vim'
-
-[[plugins]]
-repo =  "tyru/caw.vim.git"
-
-[[plugins]]
 repo =  'scrooloose/nerdtree'
 
 [[plugins]]
 repo =  'jistr/vim-nerdtree-tabs'
 
 [[plugins]]
-repo =  'mattn/emmet-vim'
-
-[[plugins]]
-repo =  'vim-scripts/grep.vim'
-
-[[plugins]]
-repo =  'Shougo/neocomplcache'
-
-[[plugins]]
-repo =  'Shougo/neoyank.vim'
+repo =  'rhysd/accelerated-jk'
 
 [[plugins]]
 repo =  'tomtom/tcomment_vim'
@@ -35,23 +17,12 @@ repo =  'tomtom/tcomment_vim'
 repo =  'tpope/vim-surround'
 
 [[plugins]]
-repo =  'Townk/vim-autoclose'
-
-[[plugins]]
-repo =  'rhysd/accelerated-jk'
-
-[[plugins]]
-repo =  'ctrlpvim/ctrlp.vim'
-
-[[plugins]]
 repo =  'thinca/vim-qfreplace'
 
 [[plugins]]
-repo =  'tpope/vim-fugitive'
-
-[[plugins]]
-repo =  'scrooloose/syntastic'
+repo =  'Townk/vim-autoclose'
 
 [[plugins]]
 repo = 'osyo-manga/vim-over'
+
 

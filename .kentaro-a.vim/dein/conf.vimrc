@@ -1,9 +1,8 @@
 scriptencoding utf-8
 filetype plugin indent on
-
-
 " General
 syntax on
+set synmaxcol=200
 set list
 set listchars=tab:»-
 set number
@@ -33,7 +32,6 @@ set pumheight=10
 set foldmethod=marker
 set autoread
 set hidden
-set ignorecase
 set smartcase
 set incsearch
 set wrapscan
@@ -52,21 +50,48 @@ set iskeyword+=-
 set showtabline=2
 set clipboard+=unnamed
 
+" Show vim config files
+command! C call ShowVimConfig()
+function! ShowVimConfig()
+	:tabe $HOME/.kentaro-a.vim/dein
+endfunction
+
+" Reload vim config files
+command! Cr source ~/.vimrc 
+
+
+" No indent when pasted from clipboard
+" if &term =~ "xterm"
+"     let &t_ti .= "\e[?2004h"
+"     let &t_te .= "\e[?2004l"
+"     let &pastetoggle = "\e[201~"
+"
+"     function XTermPasteBegin(ret)
+"         set paste
+"         return a:ret
+"     endfunction
+"
+"     noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+"     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+"     cnoremap <special> <Esc>[200~ <nop>
+"     cnoremap <special> <Esc>[201~ <nop>
+" endif
+
+
+" Remove trailing whitespace
 function! s:RemoveDust()
 	let cursor = getpos(".")
 	%s/\s\+$//ge
 	call setpos(".", cursor)
 	unlet cursor
 endfunction
-autocmd BufWritePre * call <SID>RemoveDust()
+autocmd BufWritePre *.js,*.php,*.go,*.py,*.rb,*.vue call <SID>RemoveDust()
 
 
-
-" Highlight Space
+" Mark multibyte space
 function! MarkMbSpace()
 	highlight MarkMbSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
-
 if has('syntax')
 	augroup MarkMbSpace
 		autocmd!
@@ -75,76 +100,6 @@ if has('syntax')
 	augroup END
 	call MarkMbSpace()
 endif
-
-
-" Nerdtree
-let NERDTreeShowHidden = 1
-let g:nerdtree_tabs_open_on_console_startup=1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-function! s:MoveToFileAtStart()
-	call feedkeys("\<C-w>")
-	call feedkeys("\w")
-endfunction
-autocmd VimEnter *	NERDTree | call s:MoveToFileAtStart()
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-	exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-	exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
-
-
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
-
-
-" vimgrep highlighted word
-autocmd QuickFixCmdPost *grep* cwindow
-
-
-" unite
-let g:unite_source_file_mru_limit = 50
-
-
-
-
-" Toggle row number format.
-function! ToggleNuMode()
-  if(&relativenumber == 1)
-	set norelativenumber
-  else
-	set relativenumber
-  endif
-endfunc
-
-
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
-
-let g:go_bin_path = $GOPATH.'/bin'
-filetype plugin indent on
-
-" Key mapping
-source ~/.kentaro-a.vim/dein/map.vimrc
-
-" Color settings
-source ~/.kentaro-a.vim/dein/color.vimrc
-
 
 
 " dump selected area
@@ -165,10 +120,102 @@ function! DumpText (mode)
 	elseif a:mode == "n"
 		echo "\n\n\n" .getline('.') ."\n\n\n"
 	endif
-
 endfunction
+vnoremap <Space><Space>y :<C-U>call g:DumpText('v')<CR>
+nnoremap <Space><Space>y :call g:DumpText('n')<CR>
 
-command! Kmap call ShowKeyMapping()
-function! ShowKeyMapping()
-	:tabe $HOME/.kentaro-a.vim/dein/map.vimrc
+
+" Nerdtree
+let NERDTreeShowHidden = 1
+let g:nerdtree_tabs_open_on_console_startup=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+function! s:MoveToFileAtStart()
+	call feedkeys("\<C-w>")
+	call feedkeys("\w")
 endfunction
+autocmd VimEnter *	NERDTree | call s:MoveToFileAtStart()
+
+
+
+" *********************************************************
+" *********************************************************
+" *********************************************************
+" Key mapping
+" *********************************************************
+" *********************************************************
+" *********************************************************
+noremap <S-h>	^
+noremap <S-j>	}
+noremap <S-k>	{
+noremap <S-l>	$
+vnoremap <S-l> $<Left>
+noremap <CR> A<CR><ESC>
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <S-Left> gT
+nnoremap <S-Right> gt
+noremap ga ggVG
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-h> <C-w>h
+tnoremap <C-l> <C-w>l
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+" Do not yank by x,s
+nnoremap x "_x
+nnoremap s "_s
+" Terminal window
+nnoremap cmd :belowright :terminal<CR>
+" grep
+vnoremap G* "zy :vimgrep /<C-R>z/j ./**/*
+" vimgrep highlighted word
+autocmd QuickFixCmdPost *grep* cwindow
+" tcomment keymap
+nmap <silent> -- <C-_><C-_>
+vmap <silent> -- <C-_><C-_>
+" Modify register when you pasted.
+xnoremap p "_dP
+" Back to the normal mode.
+inoremap jj <ESC>
+" search
+nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+vnoremap <silent> <Space><Space> "zy:let @/ = @z<CR>:set hlsearch<CR>
+
+" replace
+nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+vnoremap <silent> <Space>r :OverCommandLine<CR>s///g<Left><Left><Left>
+vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///g<Left><Left>
+
+
+" quickfix
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
+
+
+
+
+" *********************************************************
+" *********************************************************
+" *********************************************************
+" Color Scheme 
+" *********************************************************
+" *********************************************************
+" *********************************************************
+colorscheme blues
+set t_Co=256
+hi SpecialKey ctermfg=237 guifg=#3a3a3a
+hi NonText ctermfg=66 guifg=#5f8787
+hi TabLineFill term=bold cterm=bold ctermbg=0
+hi TabLineSel term=bold cterm=bold ctermbg=75 ctermfg=15
+hi Comment ctermfg=242
+highlight LineNr ctermfg=67
+
+
+
