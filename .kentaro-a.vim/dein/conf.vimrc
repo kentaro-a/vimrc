@@ -60,23 +60,6 @@ endfunction
 command! Cr source ~/.vimrc 
 
 
-" No indent when pasted from clipboard
-" if &term =~ "xterm"
-"     let &t_ti .= "\e[?2004h"
-"     let &t_te .= "\e[?2004l"
-"     let &pastetoggle = "\e[201~"
-"
-"     function XTermPasteBegin(ret)
-"         set paste
-"         return a:ret
-"     endfunction
-"
-"     noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-"     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-"     cnoremap <special> <Esc>[200~ <nop>
-"     cnoremap <special> <Esc>[201~ <nop>
-" endif
-
 
 " Remove trailing whitespace
 function! s:RemoveDust()
@@ -193,6 +176,9 @@ nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 vnoremap <silent> <Space>r :OverCommandLine<CR>s///g<Left><Left><Left>
 vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///g<Left><Left>
 
+"paste
+nnoremap p ""p 
+vnoremap p ""p 
 
 " quickfix
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
