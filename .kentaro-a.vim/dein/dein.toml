@@ -25,4 +25,5 @@ repo =  'Townk/vim-autoclose'
 [[plugins]]
 repo = 'osyo-manga/vim-over'
 
-
+[[plugins]]
+repo = 'kentaro-a/stdodump.vim'
