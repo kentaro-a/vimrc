@@ -1,5 +1,7 @@
 scriptencoding utf-8
 filetype plugin indent on
+
+
 " General
 syntax on
 set synmaxcol=200
@@ -34,6 +36,7 @@ set autoread
 set hidden
 set smartcase
 set incsearch
+set ignorecase
 set wrapscan
 set hlsearch
 set backspace=indent,eol,start
@@ -50,6 +53,13 @@ set iskeyword+=-
 set showtabline=2
 set clipboard+=unnamed
 
+
+" auto refresh plugins
+let g:dein#auto_recache = 1
+" auto close tag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.htaccess,*.conf'
+
+
 " Show vim config files
 command! C call ShowVimConfig()
 function! ShowVimConfig()
@@ -60,6 +70,15 @@ endfunction
 command! Cr source ~/.vimrc 
 
 
+" Nerdtree
+let NERDTreeShowHidden = 1
+let g:nerdtree_tabs_open_on_console_startup=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+function! s:MoveToFileAtStart()
+	call feedkeys("\<C-w>")
+	call feedkeys("\w")
+endfunction
+autocmd VimEnter *	NERDTree | call s:MoveToFileAtStart()
 
 " Remove trailing whitespace
 function! s:RemoveDust()
@@ -86,17 +105,6 @@ endif
 
 
 
-" Nerdtree
-let NERDTreeShowHidden = 1
-let g:nerdtree_tabs_open_on_console_startup=1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-function! s:MoveToFileAtStart()
-	call feedkeys("\<C-w>")
-	call feedkeys("\w")
-endfunction
-autocmd VimEnter *	NERDTree | call s:MoveToFileAtStart()
-
-
 
 " *********************************************************
 " *********************************************************
@@ -105,6 +113,9 @@ autocmd VimEnter *	NERDTree | call s:MoveToFileAtStart()
 " *********************************************************
 " *********************************************************
 " *********************************************************
+" tcomment keymap
+nmap <silent> -- <C-_><C-_>
+vmap <silent> -- <C-_><C-_>
 noremap <S-h>	^
 noremap <S-j>	}
 noremap <S-k>	{
@@ -138,11 +149,6 @@ nnoremap cmd :belowright :terminal<CR>
 vnoremap G* "zy :vimgrep /<C-R>z/j ./**/*
 " vimgrep highlighted word
 autocmd QuickFixCmdPost *grep* cwindow
-" tcomment keymap
-nmap <silent> -- <C-_><C-_>
-vmap <silent> -- <C-_><C-_>
-" Modify register when you pasted.
-xnoremap p "_dP
 " Back to the normal mode.
 inoremap jj <ESC>
 " search
@@ -150,19 +156,27 @@ nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearc
 vnoremap <silent> <Space><Space> "zy:let @/ = @z<CR>:set hlsearch<CR>
 
 " replace
-nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-vnoremap <silent> <Space>r :OverCommandLine<CR>s///g<Left><Left><Left>
-vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///g<Left><Left>
+nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//gI<Left><Left>
+vnoremap <silent> <Space>r :OverCommandLine<CR>s///gI<Left><Left><Left>
+vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///gI<Left><Left>
 
-"paste
-nnoremap p ""p 
-vnoremap p ""p 
+" unite
+" recent opened files
+nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
+
+
 
 " quickfix
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
 
-
+" go settings
+augroup go
+	autocmd!
+	autocmd BufEnter *.go nmap <buffer> vat vaf 
+	autocmd BufEnter *.go nnoremap <buffer> bdoc :GoDocBrowser<CR> 
+	autocmd BufEnter *.go nnoremap <buffer> doc :GoDoc<CR> 
+augroup END
 
 
 " *********************************************************
@@ -180,6 +194,5 @@ hi TabLineFill term=bold cterm=bold ctermbg=0
 hi TabLineSel term=bold cterm=bold ctermbg=75 ctermfg=15
 hi Comment ctermfg=242
 highlight LineNr ctermfg=67
-
 
 

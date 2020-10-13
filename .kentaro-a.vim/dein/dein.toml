@@ -19,11 +19,24 @@ repo =  'tpope/vim-surround'
 [[plugins]]
 repo =  'thinca/vim-qfreplace'
 
-[[plugins]]
-repo =  'Townk/vim-autoclose'
 
 [[plugins]]
 repo = 'osyo-manga/vim-over'
 
 [[plugins]]
 repo = 'kentaro-a/stdodump.vim'
+
+[[plugins]]
+repo =  'Townk/vim-autoclose'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
