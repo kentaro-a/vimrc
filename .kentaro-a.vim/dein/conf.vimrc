@@ -53,12 +53,14 @@ set iskeyword+=-
 set showtabline=2
 set clipboard+=unnamed
 
-
+"set leader key
+let mapleader = "\<Space>"
 " auto refresh plugins
 let g:dein#auto_recache = 1
 " auto close tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.htaccess,*.conf'
-
+" markdown preview
+let g:previm_open_cmd = 'open -a "Google Chrome"'
 
 " Show vim config files
 command! C call ShowVimConfig()
@@ -156,14 +158,16 @@ nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearc
 vnoremap <silent> <Space><Space> "zy:let @/ = @z<CR>:set hlsearch<CR>
 
 " replace
-nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//gI<Left><Left>
-vnoremap <silent> <Space>r :OverCommandLine<CR>s///gI<Left><Left><Left>
-vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///gI<Left><Left>
+nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//gI<Left><Left><Left>
+vnoremap <silent> <Space>r :OverCommandLine<CR>s///gI<Left><Left><Left><Left>
+vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///gI<Left><Left><Left>
 
 " unite
 " recent opened files
 nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
 
+
+nmap  <Leader>w <Plug>(easymotion-bd-w)
 
 
 " quickfix

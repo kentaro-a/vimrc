@@ -19,7 +19,6 @@ repo =  'tpope/vim-surround'
 [[plugins]]
 repo =  'thinca/vim-qfreplace'
 
-
 [[plugins]]
 repo = 'osyo-manga/vim-over'
 
@@ -40,3 +39,12 @@ repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
