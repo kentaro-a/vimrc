@@ -54,7 +54,7 @@ set showtabline=2
 set clipboard+=unnamed
 
 "set leader key
-let mapleader = "\<Space>"
+let mapleader = ","
 " auto refresh plugins
 let g:dein#auto_recache = 1
 " auto close tag
