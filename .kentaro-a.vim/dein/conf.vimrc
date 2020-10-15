@@ -51,7 +51,7 @@ set pastetoggle=<F2>
 set noexpandtab
 set iskeyword+=-
 set showtabline=2
-set clipboard+=unnamed
+set clipboard+=autoselect
 
 "set leader key
 let mapleader = ","
@@ -116,6 +116,8 @@ endif
 " *********************************************************
 " *********************************************************
 " tcomment keymap
+
+xnoremap p "_dP
 nmap <silent> -- <C-_><C-_>
 vmap <silent> -- <C-_><C-_>
 noremap <S-h>	^
@@ -154,8 +156,8 @@ autocmd QuickFixCmdPost *grep* cwindow
 " Back to the normal mode.
 inoremap jj <ESC>
 " search
-nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
-vnoremap <silent> <Space><Space> "zy:let @/ = @z<CR>:set hlsearch<CR>
+nnoremap <silent> <Space><Space> ""yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
+vnoremap <silent> <Space><Space> ""y:let @/ = @"<CR>:set hlsearch<CR>
 
 " replace
 nnoremap <Space>r :OverCommandLine<CR>%s/<C-r><C-w>//gI<Left><Left><Left>

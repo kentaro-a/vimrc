@@ -48,3 +48,7 @@ repo = 'mattn/vim-maketable'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+
