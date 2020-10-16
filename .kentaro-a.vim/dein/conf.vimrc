@@ -167,8 +167,26 @@ vnoremap <silent> r "zy:let @/ = @z<CR>:OverCommandLine<CR>%s/<C-r>///gI<Left><L
 " unite
 " recent opened files
 nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
+let g:unite_source_file_mru_limit = 20
+let g:unite_source_file_mru_filename_format = ''
 
+"ctrlp
+let g:ctrlp_map = '<Nop>'
+let g:ctrlp_use_migemo = 0
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_use_caching = 1
+let g:ctrlp_lazy_update = 200
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:50'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jpg,*.png
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor'
+let g:ctrlp_prompt_mappings = {
+	\ 'AcceptSelection("e")': [],
+	\ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+\ }
+nnoremap <silent> ,,; :CtrlPCurWD<CR><C-l>
 
+" easymotion
 nmap  <Leader>w <Plug>(easymotion-bd-w)
 
 

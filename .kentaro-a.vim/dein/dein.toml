@@ -52,3 +52,6 @@ repo = 'easymotion/vim-easymotion'
 [[plugins]]
 repo = 'terryma/vim-expand-region'
 
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
