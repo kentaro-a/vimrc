@@ -4,6 +4,7 @@ filetype plugin indent on
 
 " General
 syntax on
+set ttimeoutlen=10
 set synmaxcol=200
 set list
 set listchars=tab:»-
