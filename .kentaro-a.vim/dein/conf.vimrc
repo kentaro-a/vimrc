@@ -54,6 +54,10 @@ set iskeyword+=-
 set showtabline=2
 set clipboard+=autoselect
 
+
+
+
+
 "set leader key
 let mapleader = ","
 " auto refresh plugins
@@ -171,6 +175,24 @@ nnoremap <silent> ,,. :<C-u>Unite file_mru buffer<CR>
 let g:unite_source_file_mru_limit = 20
 let g:unite_source_file_mru_filename_format = ''
 
+"paste toggle
+nmap <Esc>t <F2>
+
+" LSP
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> <f3> :LspRename<CR>
+nmap <silent> <Leader>d :LspTypeDefinition<CR>
+nmap <silent> <Leader>r :LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 0
+
+
+
+
+
 "ctrlp
 let g:ctrlp_map = '<Nop>'
 let g:ctrlp_use_migemo = 0
@@ -204,6 +226,19 @@ augroup go
 augroup END
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 " tmux
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
@@ -212,6 +247,11 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+
+
+
+
+
 
 
 " *********************************************************
