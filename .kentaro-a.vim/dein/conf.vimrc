@@ -179,17 +179,22 @@ let g:unite_source_file_mru_filename_format = ''
 nmap <Esc>t <F2>
 
 " LSP
-nmap <silent> gd :LspDefinition<CR>
-nmap <silent> <f3> :LspRename<CR>
-nmap <silent> <Leader>d :LspTypeDefinition<CR>
-nmap <silent> <Leader>r :LspReferences<CR>
-nmap <silent> <Leader>i :LspImplementation<CR>
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
+nmap <silent> ;df :tab :LspDefinition<CR> 
+nmap <silent> ;dc :tab :LspDeclaration<CR> 
+nmap <silent> ;rf :tab :LspReferences<CR>
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+let g:asyncomplete_auto_popup = 1
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 0
 let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 0
-
-
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_document_code_action_signs_enabled = 0
+let g:lsp_document_highlight_enabled = 0
 
 
 
@@ -224,18 +229,6 @@ augroup go
 	autocmd BufEnter *.go nnoremap <buffer> bdoc :GoDocBrowser<CR> 
 	autocmd BufEnter *.go nnoremap <buffer> doc :GoDoc<CR> 
 augroup END
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
